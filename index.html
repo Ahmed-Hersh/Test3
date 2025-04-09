@@ -33,7 +33,7 @@
             background-color: var(--light-color);
             color: var(--text-color);
             line-height: 1.6;
-            padding-bottom: 80px;
+            padding-bottom: 80px; /* Space for cart button */
         }
         
         /* Header Styles */
@@ -116,11 +116,11 @@
             top: 0;
             z-index: 100;
             box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-            scrollbar-width: none;
+            scrollbar-width: none; /* Hide scrollbar for Firefox */
         }
         
         .categories::-webkit-scrollbar {
-            display: none;
+            display: none; /* Hide scrollbar for Chrome/Safari */
         }
         
         .category-btn {
@@ -346,7 +346,7 @@
             position: absolute;
             top: -5px;
             right: -5px;
-            background-color: var(--danger-color);
+            background-color: #e74c3c;
             color: white;
             width: 24px;
             height: 24px;
@@ -480,7 +480,7 @@
         }
         
         .remove-item {
-            color: var(--danger-color);
+            color: #e74c3c;
             background: none;
             border: none;
             margin-right: 0.3rem;
@@ -642,7 +642,7 @@
             box-shadow: 0 5px 12px rgba(255,107,0,0.4);
         }
         
-        /* Admin Panel */
+        /* Admin Panel Button (Hidden by default) */
         .admin-btn {
             position: fixed;
             bottom: 1.5rem;
@@ -668,6 +668,7 @@
             box-shadow: 0 6px 16px rgba(0,0,0,0.3);
         }
         
+        /* Admin Actions */
         .admin-actions {
             display: flex;
             flex-direction: column;
@@ -676,79 +677,117 @@
         
         .admin-action-btn {
             background: var(--light-color);
-            color: var(--dark-color);
             border: none;
             padding: 1rem;
             border-radius: 8px;
             font-size: 1rem;
-            font-weight: 600;
+            font-weight: 700;
             cursor: pointer;
             transition: all 0.3s ease;
             display: flex;
             align-items: center;
-            justify-content: center;
-            gap: 0.5rem;
+            justify-content: space-between;
+            color: var(--dark-color);
+            box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+        }
+        
+        .admin-action-btn i {
+            margin-left: 0.8rem;
+            font-size: 1.2rem;
         }
         
         .admin-action-btn:hover {
             background: var(--primary-color);
             color: white;
+            box-shadow: 0 4px 10px rgba(255,107,0,0.2);
         }
         
-        .admin-action-btn i {
-            font-size: 1.2rem;
-        }
-        
-        .edit-item-form {
+        /* Image Upload Section */
+        .image-upload-container {
             display: none;
-            margin-top: 1.5rem;
+            padding: 1rem;
+            background: var(--light-color);
+            border-radius: 8px;
+            margin-top: 1rem;
         }
         
-        .edit-item-form.active {
+        .image-upload-container.active {
             display: block;
         }
         
-        .items-list {
-            max-height: 300px;
-            overflow-y: auto;
-            margin: 1rem 0;
-            border: 1px solid #eee;
-            border-radius: 8px;
-            padding: 0.5rem;
+        .upload-instructions {
+            color: var(--gray);
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
         }
         
-        .item-to-edit {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 0.8rem;
-            border-bottom: 1px solid #f0f0f0;
-            cursor: pointer;
-            transition: background-color 0.3s ease;
-        }
-        
-        .item-to-edit:last-child {
-            border-bottom: none;
-        }
-        
-        .item-to-edit:hover {
-            background-color: #f9f9f9;
-        }
-        
-        .item-to-edit.active {
-            background-color: rgba(255, 107, 0, 0.1);
-        }
-        
-        .edit-image-preview {
+        .category-select {
             width: 100%;
-            height: 150px;
-            object-fit: cover;
-            border-radius: 8px;
-            margin-top: 0.8rem;
-            display: none;
+            padding: 0.7rem;
+            margin-bottom: 1rem;
+            border: 1px solid #e0e0e0;
+            border-radius: 6px;
+            font-family: 'Tajawal', sans-serif;
         }
         
-        .save-changes-btn {
+        .item-select {
+            width: 100%;
+            padding: 0.7rem;
+            margin-bottom: 1rem;
+            border: 1px solid #e0e0e0;
+            border-radius: 6px;
+            font-family: 'Tajawal', sans-serif;
+        }
+        
+        .upload-btn-wrapper {
+            position: relative;
+            overflow: hidden;
+            display: inline-block;
+            width: 100%;
+            margin-bottom: 1rem;
+        }
+        
+        .upload-btn {
+            border: 2px dashed var(--gray);
+            color: var(--gray);
+            background-color: white;
+            padding: 2rem 1rem;
+            border-radius: 6px;
+            font-size: 1rem;
+            font-weight: 600;
+            width: 100%;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .upload-btn:hover {
+            border-color: var(--primary-color);
+            color: var(--primary-color);
+            background-color: rgba(255, 107, 0, 0.05);
+        }
+        
+        .upload-btn-wrapper input[type=file] {
+            font-size: 100px;
+            position: absolute;
+            left: 0;
+            top: 0;
+            opacity: 0;
+            width: 100%;
+            height: 100%;
+            cursor: pointer;
+        }
+        
+        .preview-image {
+            max-width: 100%;
+            max-height: 200px;
+            margin-top: 1rem;
+            display: none;
+            border-radius: 6px;
+            border: 1px solid #e0e0e0;
+        }
+        
+        .upload-submit-btn {
             background: var(--success-color);
             color: white;
             border: none;
@@ -759,36 +798,38 @@
             font-weight: 700;
             cursor: pointer;
             transition: all 0.3s ease;
-            margin-top: 1rem;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 0.5rem;
+            margin-top: 0.5rem;
+            display: none;
         }
         
-        .save-changes-btn:hover {
+        .upload-submit-btn:hover {
             background: #219653;
         }
         
-        .image-upload-btn {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            background-color: var(--light-color);
-            color: var(--dark-color);
-            border: 1px dashed var(--gray);
-            padding: 0.6rem 1rem;
+        /* Price Update Section */
+        .price-update-container {
+            display: none;
+            padding: 1rem;
+            background: var(--light-color);
             border-radius: 8px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            font-size: 0.9rem;
-            width: 100%;
-            margin-top: 0.5rem;
+            margin-top: 1rem;
         }
         
-        .image-upload-btn:hover {
-            background-color: #e0e0e0;
-            border-color: var(--primary-color);
+        .price-update-container.active {
+            display: block;
+        }
+        
+        /* Menu Update Section */
+        .menu-update-container {
+            display: none;
+            padding: 1rem;
+            background: var(--light-color);
+            border-radius: 8px;
+            margin-top: 1rem;
+        }
+        
+        .menu-update-container.active {
+            display: block;
         }
         
         /* Success Message */
@@ -850,14 +891,6 @@
                 font-size: 1.2rem;
                 bottom: 1rem;
                 left: 1rem;
-            }
-            
-            .admin-btn {
-                width: 55px;
-                height: 55px;
-                font-size: 1.2rem;
-                bottom: 1rem;
-                right: 1rem;
             }
         }
         
@@ -958,7 +991,7 @@
         <span class="cart-count">0</span>
     </button>
     
-    <!-- Admin Button -->
+    <!-- Admin Button (Hidden by default) -->
     <button class="admin-btn" id="admin-btn">
         <i class="fas fa-user-shield"></i>
     </button>
@@ -1015,46 +1048,41 @@
                 <button class="admin-action-btn" id="update-images-btn">
                     <i class="fas fa-image"></i> تحديث صور المواد
                 </button>
+                <div class="image-upload-container" id="image-upload-container">
+                    <p class="upload-instructions">اختر الصنف والمادة ثم قم برفع الصورة الجديدة</p>
+                    <select class="category-select" id="upload-category-select">
+                        <option value="">اختر الصنف</option>
+                        <option value="pizza">بيتزا</option>
+                        <option value="meals">وجبات</option>
+                        <option value="special">سبيشل</option>
+                        <option value="drinks">مشروبات ومقبلات</option>
+                    </select>
+                    <select class="item-select" id="upload-item-select" disabled>
+                        <option value="">اختر المادة</option>
+                    </select>
+                    <div class="upload-btn-wrapper">
+                        <button class="upload-btn">اختر صورة من الهاتف</button>
+                        <input type="file" id="image-upload" accept="image/*">
+                    </div>
+                    <img id="preview-image" class="preview-image">
+                    <button class="upload-submit-btn" id="upload-submit-btn">
+                        <i class="fas fa-upload"></i> رفع الصورة
+                    </button>
+                </div>
+                
                 <button class="admin-action-btn" id="update-prices-btn">
                     <i class="fas fa-tags"></i> تحديث الأسعار
                 </button>
+                <div class="price-update-container" id="price-update-container">
+                    <!-- Price update form will be added here -->
+                </div>
+                
                 <button class="admin-action-btn" id="update-menu-btn">
                     <i class="fas fa-utensils"></i> تحديث القائمة
                 </button>
-            </div>
-            
-            <!-- Edit Images Form -->
-            <div class="edit-item-form" id="edit-images-form">
-                <h3 style="margin: 1rem 0 0.5rem;">تحديث صور المواد</h3>
-                <div class="items-list" id="images-items-list">
-                    <!-- Items will be added here dynamically -->
+                <div class="menu-update-container" id="menu-update-container">
+                    <!-- Menu update form will be added here -->
                 </div>
-                <div class="form-group">
-                    <label class="form-label">صورة جديدة:</label>
-                    <label for="item-image-upload" class="image-upload-btn">
-                        <i class="fas fa-camera"></i> اختر صورة
-                    </label>
-                    <input type="file" id="item-image-upload" accept="image/*" style="display: none;">
-                    <img id="edit-image-preview" class="edit-image-preview" alt="معاينة الصورة">
-                </div>
-                <button class="save-changes-btn" id="save-image-btn">
-                    <i class="fas fa-save"></i> حفظ التغييرات
-                </button>
-            </div>
-            
-            <!-- Edit Prices Form -->
-            <div class="edit-item-form" id="edit-prices-form">
-                <h3 style="margin: 1rem 0 0.5rem;">تحديث الأسعار</h3>
-                <div class="items-list" id="prices-items-list">
-                    <!-- Items will be added here dynamically -->
-                </div>
-                <div class="form-group">
-                    <label for="item-price-input" class="form-label">السعر الجديد (دينار):</label>
-                    <input type="number" id="item-price-input" class="form-input" placeholder="أدخل السعر الجديد">
-                </div>
-                <button class="save-changes-btn" id="save-price-btn">
-                    <i class="fas fa-save"></i> حفظ التغييرات
-                </button>
             </div>
         </div>
     </div>
@@ -1097,7 +1125,7 @@
     
     <script>
         // Menu Data with image URLs
-        let menuData = {
+        const menuData = {
             pizza: [
                 { name: "بيتزا دجاج", price: 5000, description: "بيتزا بالدجاج المشوي وجبنة موزاريلا", image: "https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?ixlib=rb-1.2.1&auto=format&fit=crop&w=300&q=80" },
                 { name: "بيتزا لحم", price: 6000, description: "بيتزا باللحم المفروم الطازج", image: "https://images.unsplash.com/photo-1513104890138-7c749659a591?ixlib=rb-1.2.1&auto=format&fit=crop&w=300&q=80" },
@@ -1113,7 +1141,7 @@
                 { name: "بيتزا فنگر", price: 4500, description: "بيتزا بأصابع الدجاج المقرمشة", image: "https://images.unsplash.com/photo-1565299507177-b0ac66763828?ixlib=rb-1.2.1&auto=format&fit=crop&w=300&q=80" }
             ],
             meals: [
-                { name: "بر��ر دجاج", price: 3500, description: "برغر دجاج مع الخضار والصوص", image: "https://images.unsplash.com/photo-1568901346375-23c9450c58cd?ixlib=rb-1.2.1&auto=format&fit=crop&w=300&q=80" },
+                { name: "برغر دجاج", price: 3500, description: "برغر دجاج مع الخضار والصوص", image: "https://images.unsplash.com/photo-1568901346375-23c9450c58cd?ixlib=rb-1.2.1&auto=format&fit=crop&w=300&q=80" },
                 { name: "برغر لحم", price: 4000, description: "برغر لحم بقري طازج", image: "https://images.unsplash.com/photo-1553979459-d2229ba7433b?ixlib=rb-1.2.1&auto=format&fit=crop&w=300&q=80" },
                 { name: "دبل برغر", price: 6000, description: "برغر مزدوج باللحم والجبنة", image: "https://images.unsplash.com/photo-1561758033-d89a9ad46330?ixlib=rb-1.2.1&auto=format&fit=crop&w=300&q=80" },
                 { name: "برغر مكسيكي", price: 5000, description: "برغر بالصوص المكسيكي الحار", image: "https://images.unsplash.com/photo-1568901346375-23c9450c58cd?ixlib=rb-1.2.1&auto=format&fit=crop&w=300&q=80" },
@@ -1163,7 +1191,6 @@
         function generateMenuItems() {
             for (const category in menuData) {
                 const container = document.getElementById(`${category}-menu`).querySelector('.menu-items');
-                container.innerHTML = '';
                 
                 menuData[category].forEach(item => {
                     const menuItem = document.createElement('div');
@@ -1225,36 +1252,13 @@
             const adminBtn = document.getElementById('admin-btn');
             const adminModal = document.getElementById('admin-modal');
             
-            // Admin elements
-            const updateImagesBtn = document.getElementById('update-images-btn');
-            const updatePricesBtn = document.getElementById('update-prices-btn');
-            const updateMenuBtn = document.getElementById('update-menu-btn');
-            const editImagesForm = document.getElementById('edit-images-form');
-            const editPricesForm = document.getElementById('edit-prices-form');
-            const imagesItemsList = document.getElementById('images-items-list');
-            const pricesItemsList = document.getElementById('prices-items-list');
-            const itemImageUpload = document.getElementById('item-image-upload');
-            const editImagePreview = document.getElementById('edit-image-preview');
-            const itemPriceInput = document.getElementById('item-price-input');
-            const saveImageBtn = document.getElementById('save-image-btn');
-            const savePriceBtn = document.getElementById('save-price-btn');
-            
             let cart = [];
             let totalPrice = 0;
-            let selectedItem = null;
-            let selectedItemType = null;
             
             // Show admin button if admin mode is enabled
             const urlParams = new URLSearchParams(window.location.search);
             if (urlParams.get('admin') === 'true') {
                 adminBtn.style.display = 'flex';
-                
-                // Load admin data from localStorage if available
-                const savedMenuData = localStorage.getItem('menuData');
-                if (savedMenuData) {
-                    menuData = JSON.parse(savedMenuData);
-                    generateMenuItems();
-                }
             }
             
             // Admin button click handler
@@ -1265,189 +1269,106 @@
             // Close admin modal
             adminModal.querySelector('.close-modal').addEventListener('click', function() {
                 adminModal.classList.remove('open');
-                editImagesForm.classList.remove('active');
-                editPricesForm.classList.remove('active');
             });
             
             // Close modal when clicking outside
             adminModal.addEventListener('click', function(e) {
                 if (e.target === adminModal) {
                     adminModal.classList.remove('open');
-                    editImagesForm.classList.remove('active');
-                    editPricesForm.classList.remove('active');
                 }
             });
             
-            // Update Images Button
+            // Admin panel functionality
+            const updateImagesBtn = document.getElementById('update-images-btn');
+            const imageUploadContainer = document.getElementById('image-upload-container');
+            const uploadCategorySelect = document.getElementById('upload-category-select');
+            const uploadItemSelect = document.getElementById('upload-item-select');
+            const imageUpload = document.getElementById('image-upload');
+            const previewImage = document.getElementById('preview-image');
+            const uploadSubmitBtn = document.getElementById('upload-submit-btn');
+            
+            // Toggle image upload section
             updateImagesBtn.addEventListener('click', function() {
-                editImagesForm.classList.add('active');
-                editPricesForm.classList.remove('active');
+                imageUploadContainer.classList.toggle('active');
                 
-                // Populate items list
-                imagesItemsList.innerHTML = '';
+                // Hide other admin sections
+                document.getElementById('price-update-container').classList.remove('active');
+                document.getElementById('menu-update-container').classList.remove('active');
+            });
+            
+            // Update items dropdown when category changes
+            uploadCategorySelect.addEventListener('change', function() {
+                const selectedCategory = this.value;
+                uploadItemSelect.innerHTML = '<option value="">اختر المادة</option>';
+                uploadItemSelect.disabled = !selectedCategory;
                 
-                for (const category in menuData) {
-                    const categoryTitle = document.createElement('div');
-                    categoryTitle.style.fontWeight = 'bold';
-                    categoryTitle.style.margin = '0.5rem 0';
-                    categoryTitle.textContent = this.getAttribute('data-category') === 'pizza' ? '🍕 بيتزا' : 
-                                              this.getAttribute('data-category') === 'meals' ? '🍔 وجبات' :
-                                              this.getAttribute('data-category') === 'special' ? '🌟 سبيشل' : '🥤 مشروبات و مقبلات';
-                    imagesItemsList.appendChild(categoryTitle);
-                    
-                    menuData[category].forEach(item => {
-                        const itemElement = document.createElement('div');
-                        itemElement.className = 'item-to-edit';
-                        itemElement.innerHTML = `
-                            <span>${item.name}</span>
-                            <span>${item.price} دينار</span>
-                        `;
-                        
-                        itemElement.addEventListener('click', function() {
-                            document.querySelectorAll('.item-to-edit').forEach(el => el.classList.remove('active'));
-                            this.classList.add('active');
-                            selectedItem = item;
-                            selectedItemType = category;
-                            editImagePreview.src = item.image;
-                            editImagePreview.style.display = 'block';
-                        });
-                        
-                        imagesItemsList.appendChild(itemElement);
+                if (selectedCategory) {
+                    menuData[selectedCategory].forEach(item => {
+                        const option = document.createElement('option');
+                        option.value = item.name;
+                        option.textContent = item.name;
+                        uploadItemSelect.appendChild(option);
                     });
                 }
             });
             
-            // Update Prices Button
-            updatePricesBtn.addEventListener('click', function() {
-                editPricesForm.classList.add('active');
-                editImagesForm.classList.remove('active');
-                
-                // Populate items list
-                pricesItemsList.innerHTML = '';
-                
-                for (const category in menuData) {
-                    const categoryTitle = document.createElement('div');
-                    categoryTitle.style.fontWeight = 'bold';
-                    categoryTitle.style.margin = '0.5rem 0';
-                    categoryTitle.textContent = this.getAttribute('data-category') === 'pizza' ? '🍕 بيتزا' : 
-                                              this.getAttribute('data-category') === 'meals' ? '🍔 وجبات' :
-                                              this.getAttribute('data-category') === 'special' ? '🌟 سبيشل' : '🥤 مشروبات و مقبلات';
-                    pricesItemsList.appendChild(categoryTitle);
-                    
-                    menuData[category].forEach(item => {
-                        const itemElement = document.createElement('div');
-                        itemElement.className = 'item-to-edit';
-                        itemElement.innerHTML = `
-                            <span>${item.name}</span>
-                            <span>${item.price} دينار</span>
-                        `;
-                        
-                        itemElement.addEventListener('click', function() {
-                            document.querySelectorAll('.item-to-edit').forEach(el => el.classList.remove('active'));
-                            this.classList.add('active');
-                            selectedItem = item;
-                            selectedItemType = category;
-                            itemPriceInput.value = item.price;
-                        });
-                        
-                        pricesItemsList.appendChild(itemElement);
-                    });
-                }
-            });
-            
-            // Image Upload Handler
-            itemImageUpload.addEventListener('change', function(e) {
+            // Preview image when selected
+            imageUpload.addEventListener('change', function(e) {
                 const file = e.target.files[0];
                 if (file) {
                     const reader = new FileReader();
                     reader.onload = function(event) {
-                        editImagePreview.src = event.target.result;
-                        editImagePreview.style.display = 'block';
+                        previewImage.src = event.target.result;
+                        previewImage.style.display = 'block';
+                        uploadSubmitBtn.style.display = 'block';
                     };
                     reader.readAsDataURL(file);
                 }
             });
             
-            // Save Image Changes
-            saveImageBtn.addEventListener('click', function() {
-                if (!selectedItem) {
-                    alert('الرجاء اختيار مادة أولاً');
+            // Submit image update
+            uploadSubmitBtn.addEventListener('click', function() {
+                const category = uploadCategorySelect.value;
+                const itemName = uploadItemSelect.value;
+                const imageFile = imageUpload.files[0];
+                
+                if (!category || !itemName || !imageFile) {
+                    alert('الرجاء اختيار الصنف والمادة وصورة');
                     return;
                 }
                 
-                if (itemImageUpload.files.length > 0) {
-                    const file = itemImageUpload.files[0];
+                // Find the item in menuData and update its image
+                const categoryItems = menuData[category];
+                const itemIndex = categoryItems.findIndex(item => item.name === itemName);
+                
+                if (itemIndex !== -1) {
                     const reader = new FileReader();
                     reader.onload = function(event) {
-                        selectedItem.image = event.target.result;
+                        // Update the image in the menuData
+                        categoryItems[itemIndex].image = event.target.result;
                         
-                        // Update in menuData
-                        const itemIndex = menuData[selectedItemType].findIndex(item => item.name === selectedItem.name);
-                        if (itemIndex !== -1) {
-                            menuData[selectedItemType][itemIndex].image = event.target.result;
-                        }
+                        // Update the image in the DOM
+                        const menuItems = document.querySelectorAll('.menu-item');
+                        menuItems.forEach(menuItem => {
+                            const itemTitle = menuItem.querySelector('.item-name').textContent;
+                            if (itemTitle === itemName) {
+                                menuItem.querySelector('.item-image').src = event.target.result;
+                            }
+                        });
                         
-                        // Save to localStorage
-                        localStorage.setItem('menuData', JSON.stringify(menuData));
+                        // Show success message
+                        alert('تم تحديث صورة المادة بنجاح!');
                         
-                        // Regenerate menu
-                        generateMenuItems();
-                        
-                        // Show success
-                        showSuccessMessage('تم تحديث الصورة بنجاح');
+                        // Reset the form
+                        uploadCategorySelect.value = '';
+                        uploadItemSelect.innerHTML = '<option value="">اختر المادة</option>';
+                        uploadItemSelect.disabled = true;
+                        imageUpload.value = '';
+                        previewImage.style.display = 'none';
+                        uploadSubmitBtn.style.display = 'none';
                     };
-                    reader.readAsDataURL(file);
-                } else if (editImagePreview.src && editImagePreview.src !== selectedItem.image) {
-                    selectedItem.image = editImagePreview.src;
-                    
-                    // Update in menuData
-                    const itemIndex = menuData[selectedItemType].findIndex(item => item.name === selectedItem.name);
-                    if (itemIndex !== -1) {
-                        menuData[selectedItemType][itemIndex].image = editImagePreview.src;
-                    }
-                    
-                    // Save to localStorage
-                    localStorage.setItem('menuData', JSON.stringify(menuData));
-                    
-                    // Regenerate menu
-                    generateMenuItems();
-                    
-                    // Show success
-                    showSuccessMessage('تم تحديث الصورة بنجاح');
-                } else {
-                    alert('لم تقم باختيار صورة جديدة');
+                    reader.readAsDataURL(imageFile);
                 }
-            });
-            
-            // Save Price Changes
-            savePriceBtn.addEventListener('click', function() {
-                if (!selectedItem) {
-                    alert('الرجاء اختيار مادة أولاً');
-                    return;
-                }
-                
-                const newPrice = parseInt(itemPriceInput.value);
-                if (isNaN(newPrice) {
-                    alert('الرجاء إدخال سعر صحيح');
-                    return;
-                }
-                
-                selectedItem.price = newPrice;
-                
-                // Update in menuData
-                const itemIndex = menuData[selectedItemType].findIndex(item => item.name === selectedItem.name);
-                if (itemIndex !== -1) {
-                    menuData[selectedItemType][itemIndex].price = newPrice;
-                }
-                
-                // Save to localStorage
-                localStorage.setItem('menuData', JSON.stringify(menuData));
-                
-                // Regenerate menu
-                generateMenuItems();
-                
-                // Show success
-                showSuccessMessage('تم تحديث السعر بنجاح');
             });
             
             // Add to cart
@@ -1628,18 +1549,13 @@
                 notesInput.value = '';
                 
                 // Show success message
-                showSuccessMessage('تم إرسال طلبك بنجاح!', 'شكراً لاختيارك Tasty Fast Food');
-            });
-            
-            // Show success message
-            function showSuccessMessage(title, subtitle = '') {
                 const successMsg = document.createElement('div');
                 successMsg.className = 'success-message';
                 successMsg.innerHTML = `
                     <div class="success-content">
                         <i class="fas fa-check-circle"></i>
-                        <h3>${title}</h3>
-                        ${subtitle ? `<p>${subtitle}</p>` : ''}
+                        <h3>تم إرسال طلبك بنجاح!</h3>
+                        <p>شكراً لاختيارك Tasty Fast Food</p>
                     </div>
                 `;
                 document.body.appendChild(successMsg);
@@ -1647,284 +1563,7 @@
                 setTimeout(() => {
                     successMsg.remove();
                 }, 3000);
-            }
-        });
-    </script>
-</body>
-</html>
-<!DOCTYPE html>
-<html lang="ar" dir="rtl">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tasty Fast Food - قائمة الطعام</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;900&display=swap" rel="stylesheet">
-    <style>
-        /* جميع أنماط CSS السابقة تبقى كما هي */
-        /* أضفت فقط الأنماط الجديدة أدناه */
-        
-        .admin-panel {
-            display: none;
-            position: fixed;
-            top: 10px;
-            right: 10px;
-            background: white;
-            padding: 10px;
-            border-radius: 5px;
-            box-shadow: 0 0 10px rgba(0,0,0,0.2);
-            z-index: 10000;
-        }
-        
-        .admin-panel.active {
-            display: block;
-        }
-        
-        .edit-form {
-            display: none;
-            margin-top: 15px;
-            padding: 10px;
-            background: #f5f5f5;
-            border-radius: 5px;
-        }
-        
-        .edit-form.active {
-            display: block;
-        }
-        
-        .item-list {
-            max-height: 300px;
-            overflow-y: auto;
-            margin: 10px 0;
-            border: 1px solid #ddd;
-            padding: 5px;
-            border-radius: 5px;
-        }
-        
-        .item-to-edit {
-            padding: 8px;
-            border-bottom: 1px solid #eee;
-            cursor: pointer;
-        }
-        
-        .item-to-edit:hover {
-            background-color: #f0f0f0;
-        }
-        
-        .item-to-edit.active {
-            background-color: #ffe0d2;
-        }
-    </style>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-</head>
-<body>
-    <!-- جميع عناصر HTML السابقة تبقى كما هي -->
-    <!-- نضيف فقط لوحة التحكم الجديدة هنا -->
-
-    <!-- لوحة تحكم المسؤول -->
-    <div class="admin-panel" id="adminPanel">
-        <button id="toggleAdminBtn" style="background: #2c3e50; color: white; border: none; padding: 5px 10px; border-radius: 3px;">
-            <i class="fas fa-cog"></i> إعدادات المسؤول
-        </button>
-        
-        <div class="edit-form" id="editImagesForm">
-            <h3>تعديل الصور</h3>
-            <div class="item-list" id="imageItemsList"></div>
-            <div class="form-group">
-                <label>صورة جديدة:</label>
-                <input type="file" id="newImageUpload" accept="image/*" style="display: none;">
-                <button onclick="document.getElementById('newImageUpload').click()" style="margin-top: 5px;">
-                    <i class="fas fa-upload"></i> اختر صورة
-                </button>
-                <img id="imagePreview" style="max-width: 100%; margin-top: 10px; display: none;">
-            </div>
-            <button id="saveImageBtn" style="background: #27ae60; color: white; border: none; padding: 5px 10px; border-radius: 3px; margin-top: 10px;">
-                <i class="fas fa-save"></i> حفظ الصورة
-            </button>
-        </div>
-        
-        <div class="edit-form" id="editPricesForm">
-            <h3>تعديل الأسعار</h3>
-            <div class="item-list" id="priceItemsList"></div>
-            <div class="form-group">
-                <label>السعر الجديد:</label>
-                <input type="number" id="newPriceInput" placeholder="أدخل السعر الجديد" style="width: 100%; padding: 5px; margin-top: 5px;">
-            </div>
-            <button id="savePriceBtn" style="background: #27ae60; color: white; border: none; padding: 5px 10px; border-radius: 3px; margin-top: 10px;">
-                <i class="fas fa-save"></i> حفظ السعر
-            </button>
-        </div>
-    </div>
-
-    <script>
-        // نبدأ بجعل وضع المسؤول يعمل بشكل صحيح
-        
-        // نضيف هذه المتغيرات في بداية السكربت
-        let isAdmin = false;
-        let selectedItemForEdit = null;
-        let selectedCategoryForEdit = null;
-        
-        // نضيف هذه الدالة لتفعيل وضع المسؤول
-        function setupAdminPanel() {
-            const urlParams = new URLSearchParams(window.location.search);
-            isAdmin = urlParams.get('admin') === 'true';
-            
-            if (isAdmin) {
-                document.getElementById('adminPanel').classList.add('active');
-                loadItemsForEditing();
-                
-                // إضافة عناصر التحكم
-                document.getElementById('toggleAdminBtn').addEventListener('click', function() {
-                    const forms = document.querySelectorAll('.edit-form');
-                    forms.forEach(form => form.classList.toggle('active'));
-                });
-                
-                document.getElementById('newImageUpload').addEventListener('change', function(e) {
-                    const file = e.target.files[0];
-                    if (file) {
-                        const reader = new FileReader();
-                        reader.onload = function(event) {
-                            document.getElementById('imagePreview').src = event.target.result;
-                            document.getElementById('imagePreview').style.display = 'block';
-                        };
-                        reader.readAsDataURL(file);
-                    }
-                });
-                
-                document.getElementById('saveImageBtn').addEventListener('click', function() {
-                    if (!selectedItemForEdit) {
-                        alert('الرجاء اختيار مادة أولاً');
-                        return;
-                    }
-                    
-                    const newImage = document.getElementById('imagePreview').src;
-                    if (newImage) {
-                        // تحديث الصورة في menuData
-                        const categoryIndex = menuData[selectedCategoryForEdit].findIndex(
-                            item => item.name === selectedItemForEdit.name
-                        );
-                        
-                        if (categoryIndex !== -1) {
-                            menuData[selectedCategoryForEdit][categoryIndex].image = newImage;
-                            localStorage.setItem('menuData', JSON.stringify(menuData));
-                            generateMenuItems();
-                            alert('تم تحديث الصورة بنجاح');
-                        }
-                    } else {
-                        alert('لم تقم باختيار صورة جديدة');
-                    }
-                });
-                
-                document.getElementById('savePriceBtn').addEventListener('click', function() {
-                    if (!selectedItemForEdit) {
-                        alert('الرجاء اختيار مادة أولاً');
-                        return;
-                    }
-                    
-                    const newPrice = parseInt(document.getElementById('newPriceInput').value);
-                    if (isNaN(newPrice)) {
-                        alert('الرجاء إدخال سعر صحيح');
-                        return;
-                    }
-                    
-                    // تحديث السعر في menuData
-                    const categoryIndex = menuData[selectedCategoryForEdit].findIndex(
-                        item => item.name === selectedItemForEdit.name
-                    );
-                    
-                    if (categoryIndex !== -1) {
-                        menuData[selectedCategoryForEdit][categoryIndex].price = newPrice;
-                        localStorage.setItem('menuData', JSON.stringify(menuData));
-                        generateMenuItems();
-                        alert('تم تحديث السعر بنجاح');
-                    }
-                });
-            }
-        }
-        
-        // دالة لتحميل العناصر للتعديل
-        function loadItemsForEditing() {
-            const imageItemsList = document.getElementById('imageItemsList');
-            const priceItemsList = document.getElementById('priceItemsList');
-            
-            imageItemsList.innerHTML = '';
-            priceItemsList.innerHTML = '';
-            
-            // نمرر على جميع الفئات والمواد
-            for (const category in menuData) {
-                const categoryTitle = document.createElement('div');
-                categoryTitle.style.fontWeight = 'bold';
-                categoryTitle.style.margin = '10px 0 5px 0';
-                categoryTitle.textContent = getCategoryName(category);
-                
-                imageItemsList.appendChild(categoryTitle.cloneNode(true));
-                priceItemsList.appendChild(categoryTitle.cloneNode(true));
-                
-                menuData[category].forEach(item => {
-                    const itemElement = document.createElement('div');
-                    itemElement.className = 'item-to-edit';
-                    itemElement.textContent = `${item.name} - ${item.price} دينار`;
-                    
-                    // نسخة للقائمة الثانية
-                    const itemElementCopy = itemElement.cloneNode(true);
-                    
-                    // إضافة حدث النقر لكل عنصر
-                    itemElement.addEventListener('click', function() {
-                        selectItemForEdit(item, category, this, imageItemsList);
-                    });
-                    
-                    itemElementCopy.addEventListener('click', function() {
-                        selectItemForEdit(item, category, this, priceItemsList);
-                        document.getElementById('newPriceInput').value = item.price;
-                    });
-                    
-                    imageItemsList.appendChild(itemElement);
-                    priceItemsList.appendChild(itemElementCopy);
-                });
-            }
-        }
-        
-        // دالة مساعدة للحصول على اسم الفئة
-        function getCategoryName(category) {
-            const names = {
-                pizza: '🍕 بيتزا',
-                meals: '🍔 وجبات',
-                special: '🌟 سبيشل',
-                drinks: '🥤 مشروبات'
-            };
-            return names[category] || category;
-        }
-        
-        // دالة لتحديد العنصر المطلوب تعديله
-        function selectItemForEdit(item, category, element, container) {
-            // إزالة التنشيط من جميع العناصر
-            container.querySelectorAll('.item-to-edit').forEach(el => {
-                el.classList.remove('active');
             });
-            
-            // تنشيط العنصر المحدد
-            element.classList.add('active');
-            
-            // حفظ العنصر المحدد
-            selectedItemForEdit = item;
-            selectedCategoryForEdit = category;
-            
-            // إذا كانت هذه قائمة الصور، نعرض الصورة الحالية
-            if (container.id === 'imageItemsList') {
-                document.getElementById('imagePreview').src = item.image;
-                document.getElementById('imagePreview').style.display = 'block';
-            }
-        }
-        
-        // نستدعي هذه الدالة عند تحميل الصفحة
-        document.addEventListener('DOMContentLoaded', function() {
-            // ... الكود السابق ...
-            
-            // نضيف هذا الاستدعاء بعد تحميل البيانات
-            setupAdminPanel();
-            
-            // ... بقية الكود ...
         });
     </script>
 </body>
