@@ -177,10 +177,10 @@
         .section-title::after {
             content: "";
             position: absolute;
-            bottom: -5px;
+            bottom: -4px;
             right: 0;
             width: 30%;
-            height: 3px;
+            height: 2px;
             background-color: var(--primary-color);
         }
         
@@ -641,104 +641,30 @@
             box-shadow: 0 5px 12px rgba(255,107,0,0.4);
         }
         
-        /* Image Upload Button */
-        .image-upload-container {
-            margin-top: 1rem;
-            text-align: center;
-        }
-        
-        .image-upload-btn {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            background-color: var(--light-color);
-            color: var(--dark-color);
-            border: 1px dashed var(--gray);
-            padding: 0.6rem 1rem;
-            border-radius: 8px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            font-size: 0.9rem;
-        }
-        
-        .image-upload-btn:hover {
-            background-color: #e0e0e0;
-            border-color: var(--primary-color);
-        }
-        
-        .image-upload-btn i {
-            margin-left: 0.5rem;
-        }
-        
-        .uploaded-image {
-            max-width: 100%;
-            max-height: 150px;
-            margin-top: 0.8rem;
-            border-radius: 8px;
+        /* Admin Panel Button (Hidden by default) */
+        .admin-btn {
+            position: fixed;
+            bottom: 1.5rem;
+            right: 1.5rem;
+            background: var(--dark-color);
+            color: var(--white);
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
             display: none;
-        }
-        
-        /* Footer Styles */
-        .footer {
-            background-color: var(--dark-color);
-            color: white;
-            padding: 1.5rem 1rem;
-            text-align: center;
-            margin-top: 2rem;
-        }
-        
-        .footer-content {
-            max-width: 1200px;
-            margin: 0 auto;
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 1.5rem;
-            text-align: right;
-        }
-        
-        .footer-section h3 {
-            font-size: 1.1rem;
-            margin-bottom: 0.8rem;
-            color: var(--accent-color);
-            position: relative;
-            display: inline-block;
-        }
-        
-        .footer-section h3::after {
-            content: "";
-            position: absolute;
-            bottom: -4px;
-            right: 0;
-            width: 50%;
-            height: 2px;
-            background-color: var(--primary-color);
-        }
-        
-        .footer-section p {
-            margin-bottom: 0.6rem;
-            opacity: 0.9;
-            font-size: 0.9rem;
-        }
-        
-        .contact-info {
-            display: flex;
+            justify-content: center;
             align-items: center;
-            margin-bottom: 0.6rem;
-            font-size: 0.9rem;
+            font-size: 1.3rem;
+            cursor: pointer;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+            z-index: 1000;
+            border: none;
+            transition: all 0.3s ease;
         }
         
-        .contact-info i {
-            margin-left: 0.6rem;
-            color: var(--accent-color);
-        }
-        
-        .footer-bottom {
-            text-align: center;
-            padding-top: 1rem;
-            margin-top: 1rem;
-            border-top: 1px solid rgba(255,255,255,0.1);
-            font-size: 0.8rem;
-            opacity: 0.8;
+        .admin-btn:hover {
+            transform: scale(1.1);
+            box-shadow: 0 6px 16px rgba(0,0,0,0.3);
         }
         
         /* Success Message */
@@ -900,6 +826,11 @@
         <span class="cart-count">0</span>
     </button>
     
+    <!-- Admin Button (Hidden by default) -->
+    <button class="admin-btn" id="admin-btn">
+        <i class="fas fa-user-shield"></i>
+    </button>
+    
     <!-- Cart Sidebar -->
     <div class="cart-container">
         <div class="cart-header">
@@ -917,7 +848,7 @@
     </div>
     
     <!-- Checkout Modal -->
-    <div class="modal-overlay">
+    <div class="modal-overlay" id="checkout-modal">
         <div class="modal">
             <div class="modal-header">
                 <div class="modal-title">معلومات التوصيل</div>
@@ -936,15 +867,29 @@
                     <label for="customer-phone" class="form-label">رقم الهاتف</label>
                     <input type="tel" id="customer-phone" class="form-input" required placeholder="ادخل رقم هاتفك">
                 </div>
-                <div class="image-upload-container">
-                    <label for="order-image" class="image-upload-btn">
-                        <i class="fas fa-camera"></i> إضافة صورة للطلب
-                    </label>
-                    <input type="file" id="order-image" accept="image/*" style="display: none;">
-                    <img id="uploaded-image" class="uploaded-image" alt="صورة الطلب">
-                </div>
                 <button type="submit" class="submit-order"><i class="fas fa-check-circle"></i> تأكيد الطلب</button>
             </form>
+        </div>
+    </div>
+    
+    <!-- Admin Modal -->
+    <div class="modal-overlay" id="admin-modal">
+        <div class="modal">
+            <div class="modal-header">
+                <div class="modal-title">لوحة التحكم</div>
+                <button class="close-modal"><i class="fas fa-times"></i></button>
+            </div>
+            <div class="admin-actions">
+                <button class="admin-action-btn" id="update-images-btn">
+                    <i class="fas fa-image"></i> تحديث صور المواد
+                </button>
+                <button class="admin-action-btn" id="update-prices-btn">
+                    <i class="fas fa-tags"></i> تحديث الأسعار
+                </button>
+                <button class="admin-action-btn" id="update-menu-btn">
+                    <i class="fas fa-utensils"></i> تحديث القائمة
+                </button>
+            </div>
         </div>
     </div>
     
@@ -1106,28 +1051,36 @@
             const cartCount = document.querySelector('.cart-count');
             const totalPriceElement = document.querySelector('.total-price');
             const checkoutBtn = document.querySelector('.checkout-btn');
-            const modalOverlay = document.querySelector('.modal-overlay');
+            const checkoutModal = document.getElementById('checkout-modal');
             const closeModalBtn = document.querySelector('.close-modal');
             const customerForm = document.getElementById('customer-form');
             const notesInput = document.getElementById('notes');
-            const orderImageInput = document.getElementById('order-image');
-            const uploadedImage = document.getElementById('uploaded-image');
+            const adminBtn = document.getElementById('admin-btn');
+            const adminModal = document.getElementById('admin-modal');
             
             let cart = [];
             let totalPrice = 0;
-            let orderImage = null;
             
-            // Image upload functionality
-            orderImageInput.addEventListener('change', function(e) {
-                const file = e.target.files[0];
-                if (file) {
-                    const reader = new FileReader();
-                    reader.onload = function(event) {
-                        uploadedImage.src = event.target.result;
-                        uploadedImage.style.display = 'block';
-                        orderImage = event.target.result; // Store base64 image
-                    };
-                    reader.readAsDataURL(file);
+            // Show admin button if admin mode is enabled
+            const urlParams = new URLSearchParams(window.location.search);
+            if (urlParams.get('admin') === 'true') {
+                adminBtn.style.display = 'flex';
+            }
+            
+            // Admin button click handler
+            adminBtn.addEventListener('click', function() {
+                adminModal.classList.add('open');
+            });
+            
+            // Close admin modal
+            adminModal.querySelector('.close-modal').addEventListener('click', function() {
+                adminModal.classList.remove('open');
+            });
+            
+            // Close modal when clicking outside
+            adminModal.addEventListener('click', function(e) {
+                if (e.target === adminModal) {
+                    adminModal.classList.remove('open');
                 }
             });
             
@@ -1152,7 +1105,6 @@
                     }
                     
                     updateCart();
-                    showCart();
                     
                     // Add animation to cart button
                     cartBtn.classList.add('pulse');
@@ -1241,8 +1193,8 @@
             closeCartBtn.addEventListener('click', hideCart);
             
             // Close cart when clicking outside
-            modalOverlay.addEventListener('click', function(e) {
-                if (e.target === modalOverlay) {
+            cartContainer.addEventListener('click', function(e) {
+                if (e.target === cartContainer) {
                     hideCart();
                 }
             });
@@ -1254,18 +1206,18 @@
                     return;
                 }
                 
-                modalOverlay.classList.add('open');
+                checkoutModal.classList.add('open');
             });
             
             // Close modal
             closeModalBtn.addEventListener('click', function() {
-                modalOverlay.classList.remove('open');
+                checkoutModal.classList.remove('open');
             });
             
             // Close modal when clicking outside
-            modalOverlay.addEventListener('click', function(e) {
-                if (e.target === modalOverlay) {
-                    modalOverlay.classList.remove('open');
+            checkoutModal.addEventListener('click', function(e) {
+                if (e.target === checkoutModal) {
+                    checkoutModal.classList.remove('open');
                 }
             });
             
@@ -1295,13 +1247,6 @@
                     message += `\n📝 *ملاحظات:* ${notes}`;
                 }
                 
-                // If there's an uploaded image, we'll send it separately
-                if (orderImage) {
-                    // In a real app, you would upload the image to a server first
-                    // For this demo, we'll just mention that there's an image
-                    message += `\n📷 *تم إرفاق صورة مع الطلب*`;
-                }
-                
                 // Encode message for WhatsApp
                 const encodedMessage = encodeURIComponent(message);
                 
@@ -1312,13 +1257,9 @@
                 cart = [];
                 updateCart();
                 hideCart();
-                modalOverlay.classList.remove('open');
+                checkoutModal.classList.remove('open');
                 customerForm.reset();
                 notesInput.value = '';
-                uploadedImage.src = '';
-                uploadedImage.style.display = 'none';
-                orderImage = null;
-                orderImageInput.value = '';
                 
                 // Show success message
                 const successMsg = document.createElement('div');
