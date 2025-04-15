@@ -469,26 +469,6 @@
             border-top: 2px dashed var(--accent-color);
         }
         
-        .delivery-fee {
-            display: flex;
-            justify-content: space-between;
-            font-weight: 600;
-            font-size: 1rem;
-            margin: 0.5rem 0;
-            color: var(--dark-color);
-        }
-        
-        .total-with-delivery {
-            display: flex;
-            justify-content: space-between;
-            font-weight: 800;
-            font-size: 1.3rem;
-            margin: 1rem 0;
-            padding-top: 0.8rem;
-            border-top: 2px solid var(--primary-color);
-            color: var(--primary-dark);
-        }
-        
         /* Notes Section in Cart */
         .cart-notes-container {
             margin: 1rem 0;
@@ -895,14 +875,6 @@
             <span>المجموع:</span>
             <span class="total-price">0 دينار</span>
         </div>
-        <div class="delivery-fee">
-            <span>رسوم التوصيل:</span>
-            <span class="delivery-price">1500 دينار</span>
-        </div>
-        <div class="total-with-delivery">
-            <span>المجموع الكلي:</span>
-            <span class="total-with-delivery-price">1500 دينار</span>
-        </div>
         
         <!-- Notes Section in Cart -->
         <div class="cart-notes-container">
@@ -917,17 +889,13 @@
     <div class="modal-overlay" id="checkout-modal">
         <div class="modal">
             <div class="modal-header">
-                <div class="modal-title">معلومات التوصيل</div>
+                <div class="modal-title">معلومات الطلب</div>
                 <button class="close-modal"><i class="fas fa-times"></i></button>
             </div>
             <form id="customer-form">
                 <div class="form-group">
                     <label for="customer-name" class="form-label">الاسم الكامل</label>
                     <input type="text" id="customer-name" class="form-input" required placeholder="ادخل اسمك الكامل">
-                </div>
-                <div class="form-group">
-                    <label for="customer-address" class="form-label">عنوان التوصيل</label>
-                    <input type="text" id="customer-address" class="form-input" required placeholder="ادخل عنوانك بالتفصيل">
                 </div>
                 <div class="form-group">
                     <label for="customer-phone" class="form-label">رقم الهاتف</label>
@@ -1061,7 +1029,6 @@
             const cartItemsContainer = document.querySelector('.cart-items');
             const cartCount = document.querySelector('.cart-count');
             const totalPriceElement = document.querySelector('.total-price');
-            const totalWithDeliveryElement = document.querySelector('.total-with-delivery-price');
             const checkoutBtn = document.querySelector('.checkout-btn');
             const checkoutModal = document.getElementById('checkout-modal');
             const closeModalBtn = document.querySelector('.close-modal');
@@ -1070,7 +1037,6 @@
             
             let cart = [];
             let totalPrice = 0;
-            const deliveryFee = 1500;
             
             // Add to cart
             document.addEventListener('click', function(e) {
@@ -1136,7 +1102,6 @@
                 const itemCount = cart.reduce((total, item) => total + item.quantity, 0);
                 cartCount.textContent = itemCount;
                 totalPriceElement.textContent = `${totalPrice} دينار`;
-                totalWithDeliveryElement.textContent = `${totalPrice + deliveryFee} دينار`;
                 
                 // Show/hide cart count
                 cartCount.style.display = itemCount > 0 ? 'flex' : 'none';
@@ -1215,14 +1180,12 @@
                 e.preventDefault();
                 
                 const name = document.getElementById('customer-name').value;
-                const address = document.getElementById('customer-address').value;
                 const phone = document.getElementById('customer-phone').value;
                 const notes = cartNotesInput.value;
                 
                 // Prepare order message
                 let message = `🍔 *طلب جديد من Tasty Fast Food* 🍕\n\n`;
                 message += `👤 *الاسم:* ${name}\n`;
-                message += `📍 *العنوان:* ${address}\n`;
                 message += `📞 *رقم الهاتف:* ${phone}\n\n`;
                 message += `📋 *تفاصيل الطلب:*\n`;
                 
@@ -1231,8 +1194,6 @@
                 });
                 
                 message += `\n💰 *المجموع:* ${totalPrice} دينار\n`;
-                message += `🚚 *رسوم التوصيل:* ${deliveryFee} دينار\n`;
-                message += `💵 *المجموع الكلي:* ${totalPrice + deliveryFee} دينار\n`;
                 
                 if (notes) {
                     message += `\n📝 *ملاحظات:* ${notes}`;
